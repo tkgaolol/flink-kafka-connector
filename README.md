@@ -56,11 +56,11 @@ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -jar t
 Produce a message to Kafka, which the Flink job will consume:
 ```
 docker exec -ti kafka kafka-console-producer --topic demo-inbound --bootstrap-server kafka:9093
-{"name":"abcdefg"}
+{"name":"John Smith"}
 ```
 
 Consume the message from Kafka, which the Flink job will produce:
 ```
 docker exec -ti kafka kafka-console-consumer --topic demo-outbound --bootstrap-server kafka:9093 --from-beginning
 ```
-Expected output with uppercased name:  `{"name":"ABCDEFG"}`
+Expected output with uppercased name:  `{"name":"JOHN SMITH"}`
