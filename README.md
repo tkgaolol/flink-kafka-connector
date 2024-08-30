@@ -59,7 +59,7 @@ docker exec -ti kafka kafka-console-producer --topic demo-inbound --bootstrap-se
 {"name":"abcdefg"}
 ```
 
-Consume the message from Kafka, which the Flink job will produce
+Consume the message from Kafka, which the Flink job will produce:
 ```
 docker exec -ti kafka kafka-console-consumer --topic demo-outbound --bootstrap-server kafka:9093 --from-beginning
 ```
