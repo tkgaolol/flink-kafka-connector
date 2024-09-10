@@ -12,11 +12,7 @@
 		<flink.version>1.20.0</flink.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-
-		<!-- Allows control of whether to leave TestContainers up after component test run -->
-		<containers.stayup>false</containers.stayup>
 	</properties>
-
 
 	<dependencies>
 		<dependency>
@@ -49,11 +45,6 @@
 			<artifactId>flink-connector-kafka</artifactId>
 			<version>3.2.0-1.19</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.apache.flink</groupId>-->
-<!--			<artifactId>flink-connector-base</artifactId>-->
-<!--			<version>${flink.version}</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-json</artifactId>
