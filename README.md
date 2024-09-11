@@ -35,7 +35,7 @@ localhost:8081
 ```
 
 Submit the new job:
-`Add New` `flink-demo-1.0.0.jar` from the `target` dir.  Click on the jar and enter `Program Arguments`: `kafka:9093`.  Click `Submit`.
+`Add New` `flink-demo-1.0.0.jar` from the `target` dir.  Click on the jar and enter `Program Arguments`: `kafka:9093` for the Kafka bootstrap servers.  Click `Submit`.
 
 <div style="text-align: center;">
     <img src="resources/flink-submit-job.png" alt="Flink submit new job" style="border: 1px solid black; max-width: 800px; display: block; margin: 0 auto;" />
