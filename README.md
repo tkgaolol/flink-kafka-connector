@@ -65,9 +65,15 @@ docker exec -ti kafka kafka-console-consumer --topic demo-outbound --bootstrap-s
 ```
 Expected output with uppercased name:  `{"name":"JOHN SMITH"}`
 
+## Integration Tests
+
+Flink provides a local embedded mini cluster called `MiniClusterWithClientResource` that is used for integration testing complete jobs.
+
+The `EventProcessorIntegrationTest` uses this to test that the transformer works as expected as events are streamed in. 
+
 ## Component Tests
 
-The tests demonstrate sending events to a dockerised Kafka that are consumed by the dockerised Flink application, processed and transformed, resulting in outbound events being published that are consumed and asserted on by the test.
+The `EndToEndCT` test demonstrates sending events to a dockerised Kafka that are consumed by the dockerised Flink application, processed and transformed, resulting in outbound events being published that are consumed and asserted on by the test.
 
 <div style="text-align: center;">
     <img src="resources/flink-component-test.png" alt="Component testing the Flink application" style="max-width: 800px; display: block; margin: 0 auto;" />
