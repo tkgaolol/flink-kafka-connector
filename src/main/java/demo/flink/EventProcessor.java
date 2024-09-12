@@ -34,12 +34,9 @@ public class EventProcessor {
         try {
             DataStream<DemoEvent> eventInputStream = environment
                 .fromSource(kafkaSource, WatermarkStrategy.noWatermarks(), "Kafka Source");
-
             eventInputStream.map(new NameTransformerFunction())
                 .sinkTo(kafkaSink);
-
             environment.execute("EventProcessor Job");
-            log.info("Started stream execution environment.");
         } catch (Exception e) {
             log.error("Failed to execute Flink job", e);
             throw new RuntimeException("Failed to execute Flink job", e);
