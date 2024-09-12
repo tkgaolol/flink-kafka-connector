@@ -22,10 +22,12 @@ public class EventProcessor {
         }
         log.info("Bootstrap servers URL: {}", bootstrapServers);
 
+        log.info("Flink job starting");  // Logging used for component test to check container started.
         KafkaConnectorFactory factory = new KafkaConnectorFactory(bootstrapServers);
         execute(StreamExecutionEnvironment.getExecutionEnvironment(),
                 factory.kafkaSource(SOURCE_TOPIC),
                 factory.kafkaSink(SINK_TOPIC));
+        log.info("Flink job has finished.");
     }
 
     protected static void execute(StreamExecutionEnvironment environment, KafkaSource<DemoEvent> kafkaSource, KafkaSink<DemoEvent> kafkaSink) {

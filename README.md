@@ -64,3 +64,48 @@ Consume the message from Kafka, which the Flink job will produce:
 docker exec -ti kafka kafka-console-consumer --topic demo-outbound --bootstrap-server kafka:9093 --from-beginning
 ```
 Expected output with uppercased name:  `{"name":"JOHN SMITH"}`
+
+## Component Tests
+
+The tests demonstrate sending events to a dockerised Kafka that are consumed by the dockerised Flink application, processed and transformed, resulting in outbound events being published.
+
+The `Dockerfile` accepts `$APP_ARGS` in the `ENTRYPOINT`.  This is configured to the Kafka bootstrap servers URL `kafka:9092` in the `pom.xml` component test configuration under the `service.application.args` property, along with the other required configuration:
+```
+<service.name>${project.name}</service.name>
+<kafka.enabled>true</kafka.enabled>
+<kafka.topics>demo-inbound,demo-outbound</kafka.topics>
+<service.startup.log.message>.*Flink job starting.*</service.startup.log.message>
+<service.application.args>kafka:9092</service.application.args>
+```
+For more on the component tests see: https://github.com/lydtechconsulting/component-test-framework
+
+Build Flink application jar:
+```
+mvn clean install
+```
+
+Build Docker container:
+```
+docker build -t ct/flink-kafka-connector:latest .
+```
+
+Run tests:
+```
+mvn test -Pcomponent
+```
+
+Run tests leaving containers up:
+```
+mvn test -Pcomponent -Dcontainers.stayup
+```
+
+Manual clean up (if left containers up):
+```
+docker rm -f $(docker ps -aq)
+```
+
+Further docker clean up if network/other issues:
+```
+docker system prune
+docker volume prune
+```
