@@ -69,7 +69,12 @@ Expected output with uppercased name:  `{"name":"JOHN SMITH"}`
 
 The tests demonstrate sending events to a dockerised Kafka that are consumed by the dockerised Flink application, processed and transformed, resulting in outbound events being published.
 
-The `Dockerfile` accepts `$APP_ARGS` in the `ENTRYPOINT`.  This is configured to the Kafka bootstrap servers URL `kafka:9092` in the `pom.xml` component test configuration under the `service.application.args` property, along with the other required configuration:
+The `Dockerfile` includes `$APP_ARGS` in the `ENTRYPOINT` to enable passing in extra args to the Flink application when it is running in the Docker container:  
+```
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar ${APP_ARGS}"]
+```
+
+This is configured to the Kafka bootstrap servers URL `kafka:9092` in the `pom.xml` component test configuration under the `service.application.args` property, along with the other required configuration:
 ```
 <service.name>${project.name}</service.name>
 <kafka.enabled>true</kafka.enabled>
