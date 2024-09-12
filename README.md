@@ -67,7 +67,11 @@ Expected output with uppercased name:  `{"name":"JOHN SMITH"}`
 
 ## Component Tests
 
-The tests demonstrate sending events to a dockerised Kafka that are consumed by the dockerised Flink application, processed and transformed, resulting in outbound events being published.
+The tests demonstrate sending events to a dockerised Kafka that are consumed by the dockerised Flink application, processed and transformed, resulting in outbound events being published that are consumed and asserted on by the test.
+
+<div style="text-align: center;">
+    <img src="resources/flink-component-test.png" alt="Component testing the Flink application" style="max-width: 800px; display: block; margin: 0 auto;" />
+</div>
 
 The `Dockerfile` includes `$APP_ARGS` in the `ENTRYPOINT` to enable passing in extra args to the Flink application when it is running in the Docker container:  
 ```
