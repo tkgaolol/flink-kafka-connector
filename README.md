@@ -8,6 +8,10 @@ Demonstrates running a Flink job that listens to Kafka for messages, transforms 
     <img src="resources/flink-kafka-connector.png" alt="Flink demo with Kafka integration" style="max-width: 800px; display: block; margin: 0 auto;" />
 </div>
 
+This repo accompanies the following article:
+
+- [Integrating Flink with Kafka](https://www.lydtechconsulting.com/blog-flink-kafka-connector.html): Demonstrating connecting a Flink application to Kafka to consume, process, and produce Kafka events.
+
 ## Running the Demo
 
 The demo spins up Flink and Kafka in Docker containers, and steps through building the Flink application and submitting the job via the Flink console.  The Kafka command line tools are used to produce a message to Kafka which the Flink job processes by uppercasing the name, and to consume the resulting transformed message.  The message is in JSON format, containing a name field.  The Flink Kafka Source and Kafka Sink use a JSON deserializer and serializer respectively to marshal the message. 
